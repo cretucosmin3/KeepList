@@ -2,7 +2,6 @@
 A lite mobile application for making lists
 
 
-
 ## Usage
 
 Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
@@ -19,7 +18,7 @@ $ npm install # or pnpm install or yarn install
 
 In the project directory, you can run:
 
-### `npm run dev` or `npm start`
+### `npm dev` or `npm start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.

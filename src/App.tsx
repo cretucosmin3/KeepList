@@ -1,27 +1,12 @@
-import type { Component } from 'solid-js';
+import type { Component } from "solid-js";
+import { ListProvider } from "./contexts/ListContext";
 
-import logo from './logo.svg';
-import styles from './App.module.css';
-
-const App: Component = () => {
-  return (
-    <div class={styles.App}>
-      <header class={styles.header}>
-        <img src={logo} class={styles.logo} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          class={styles.link}
-          href="https://github.com/solidjs/solid"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Solid
-        </a>
-      </header>
-    </div>
-  );
+const App: Component = (props: any) => {
+	return (
+		<ListProvider>
+			<div class="bg-zinc-100 min-h-screen">{props.children}</div>
+		</ListProvider>
+	);
 };
 
 export default App;
