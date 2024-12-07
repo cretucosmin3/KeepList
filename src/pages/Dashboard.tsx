@@ -17,7 +17,7 @@ const Dashboard: Component = () => {
     };
 
     const selectedList = () => {
-        return lists().find(list => list.id === selectedListId());
+        return lists().find((list) => list.id === selectedListId());
     };
 
     const handleAddItem = () => {
@@ -28,10 +28,12 @@ const Dashboard: Component = () => {
 
     return (
         <div class="min-h-screen flex items-center justify-center overflow-hidden">
-            <div class="max-w-7xl w-full h-[calc(100vh-2rem)] mx-auto page-transition-enter">
+            <div class="max-w-7xl w-full h-[calc(100vh)] mx-auto page-transition-enter">
                 <div class="h-full flex flex-row overflow-hidden px-2">
-                    {/* Lists Section */}
+                    {/* Lists section */}
                     <section class="w-[30rem] max-w-lg h-full p-4 flex flex-col">
+
+                        {/* Title and actions */}
                         <div class="flex justify-between items-center mb-2">
                             <h1 class="text-2xl pl-2">My Lists</h1>
                             <button
@@ -43,9 +45,11 @@ const Dashboard: Component = () => {
                             </button>
                         </div>
 
+                        {/* Just a spacer */}
                         <div class="h-px bg-zinc-600 my-3"></div>
 
-                        <div class="flex-1 overflow-y-auto scrollbar p-2">
+                        {/* The lists */}
+                        <div class="flex-1 overflow-y-auto scrollbar p-2 pl-4">
                             <div class="flex flex-col gap-4">
                                 {sortedLists().map((list) => (
                                     <ListCard
@@ -65,7 +69,7 @@ const Dashboard: Component = () => {
                                 {lists().length === 0 && (
                                     <div class="text-center py-12">
                                         <p class="text-gray-500 mb-4 text-2xl">No lists yet!</p>
-                                        <button 
+                                        <button
                                             onClick={() => setIsCreateModalOpen(true)}
                                             class="px-4 py-2 rounded-sm text-zinc-800 outline outline-2 outline-zinc-700 hover:outline-4 hover:outline-zinc-900 transition-all"
                                         >
@@ -90,11 +94,14 @@ const Dashboard: Component = () => {
 
                     {/* Items Section */}
                     <section class="flex-1 h-full p-4 flex flex-col">
-                        <Show when={selectedList()} fallback={
-                            <div class="flex-1 flex items-center justify-center text-gray-500">
-                                <p class="text-xl">Select a list to view its items</p>
-                            </div>
-                        }>
+                        <Show
+                            when={selectedList()}
+                            fallback={
+                                <div class="flex-1 flex items-center justify-center text-gray-500">
+                                    <p class="text-xl">Select a list to view its items</p>
+                                </div>
+                            }
+                        >
                             <div class="flex justify-between items-center mb-2">
                                 <h2 class="text-2xl pl-2">{selectedList()?.name}</h2>
                                 <button
@@ -123,7 +130,7 @@ const Dashboard: Component = () => {
                                     {selectedList()?.items.length === 0 && (
                                         <div class="text-center py-12">
                                             <p class="text-2xl text-gray-900 mb-6">No items in this list 😔</p>
-                                            <button 
+                                            <button
                                                 onClick={handleAddItem}
                                                 class="px-4 py-2 text-lg rounded-sm text-zinc-800 outline outline-2 outline-zinc-700 hover:outline-4 hover:outline-zinc-900 transition-all"
                                             >

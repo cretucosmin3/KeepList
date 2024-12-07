@@ -63,9 +63,9 @@ export const ListCard: Component<ListCardProps> = (props) => {
 
   return (
     <div 
-      class={`overflow-hidden bg-white hover:bg-zinc-50 rounded-lg border-2 border-zinc-500
-        ${props.isSelected ? 'outline outline-2 outline-zinc-800' : ''} 
-        hover:border-zinc-950 relative ${isMenuOpen() ? "z-10" : ""}`}
+      class={`select-none overflow-hidden bg-white rounded-lg border-2 border-zinc-300
+        ${props.isSelected ? 'outline -outline-offset-4 outline-4 outline-zinc-700' : (isEditing() ? '' : 'hover:bg-zinc-50 hover:border-zinc-500 cursor-pointer')} 
+        relative ${isMenuOpen() ? "z-10" : ""}`}
       onClick={() => !isEditing() && props.onSelect(props.list.id)}
     >
       {/* Options Button */}
