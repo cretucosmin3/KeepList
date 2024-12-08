@@ -116,3 +116,22 @@ body {
 .scroll-r {
   scroll-margin-left: 20px;
 }
+
+
+/* Mobile Lists Panel */
+
+@media (max-width: 768px) {
+  .mobile-list-panel {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    width: 100%;
+    background: #f4f4f5;
+    transition: left .2s ease-in-out;
+
+    &.show-panel {
+      left: 0%;
+    }
+  }
+}

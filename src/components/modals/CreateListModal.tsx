@@ -16,12 +16,10 @@ export const CreateListModal: Component<CreateListModalProps> = (props) => {
     e.preventDefault();
     if (name().trim()) {
       props.onConfirm(name());
-      setName(new Date().toLocaleDateString()); // Reset name for next time
+      setName(new Date().toLocaleDateString());
       props.onClose();
     }
   };
-
-  inputRef?.focus();
 
   return (
     <Show when={props.isOpen}>
@@ -43,17 +41,15 @@ export const CreateListModal: Component<CreateListModalProps> = (props) => {
             
             <h2 class="text-xl mb-4">Create New List</h2>
             
-            <form onSubmit={handleSubmit} class="space-y-8">
-              <div>
-                <label for="listName" class="block text-lg text-gray-700 mb-1">
-                  List Name
-                </label>
+            <form onSubmit={handleSubmit} class="space-y-8 py-4">
+
+              <div class="flex gap-4 items-center">
                 <input
                   id="listName"
                   type="text"
                   value={name()}
                   onInput={(e) => setName(e.currentTarget.value)}
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700"
+                  class="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700"
                   ref={inputRef}
                   autofocus
                 />

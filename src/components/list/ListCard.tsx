@@ -40,9 +40,7 @@ export const ListCard: Component<ListCardProps> = (props) => {
   };
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (isMenuOpen() && menuButtonRef && menuRef && 
-        !menuButtonRef.contains(event.target as Node) && 
-        !menuRef.contains(event.target as Node)) {
+    if (isMenuOpen() && menuButtonRef && menuRef && !menuButtonRef.contains(event.target as Node) && !menuRef.contains(event.target as Node)) {
       setIsMenuOpen(false);
     }
   };
@@ -62,9 +60,11 @@ export const ListCard: Component<ListCardProps> = (props) => {
   });
 
   return (
-    <div 
+    <div
       class={`select-none overflow-hidden bg-white rounded-lg border-2 border-zinc-300
-        ${props.isSelected ? 'outline -outline-offset-4 outline-4 outline-zinc-700' : (isEditing() ? '' : 'hover:bg-zinc-50 hover:border-zinc-500 cursor-pointer')} 
+        ${
+          props.isSelected ? "outline -outline-offset-4 outline-4 outline-zinc-700" : isEditing() ? "" : "hover:bg-zinc-50 hover:border-zinc-500 cursor-pointer"
+        } 
         relative ${isMenuOpen() ? "z-10" : ""}`}
       onClick={() => !isEditing() && props.onSelect(props.list.id)}
     >
@@ -115,10 +115,7 @@ export const ListCard: Component<ListCardProps> = (props) => {
 
       <Show when={isMenuOpen()}>
         <div class="h-px bg-zinc-300 mt-2"></div>
-        <div
-          ref={menuRef}
-          class="grid grid-cols-2 w-full bg-zinc-50"
-        >
+        <div ref={menuRef} class="grid grid-cols-2 w-full bg-zinc-50">
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -133,9 +130,7 @@ export const ListCard: Component<ListCardProps> = (props) => {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              if (confirm("Are you sure you want to delete this list?")) {
-                props.onDelete(props.list.id);
-              }
+              props.onDelete(props.list.id);
             }}
             class="text-center text-red-700 h-full py-4 hover:bg-gray-200"
           >

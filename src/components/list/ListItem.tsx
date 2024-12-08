@@ -1,5 +1,5 @@
-import { Component, createSignal, JSX } from "solid-js";
-import { IoEllipse, IoEllipseOutline, IoGridSharp, IoCloseOutline } from "solid-icons/io";
+import { Component, JSX } from "solid-js";
+import { IoCheckmark, IoRemove, IoCloseOutline } from "solid-icons/io";
 
 interface ListItemProps {
   text: string;
@@ -11,16 +11,6 @@ interface ListItemProps {
 }
 
 const ListItem: Component<ListItemProps> = (props) => {
-  const randoRot = (min: number, max: number) => {
-    return Math.random() * (max - min) + min;
-  };
-
-  const getRandomRotation = (min: number, max: number) => Math.random() * (max - min) + min;
-
-  // Create signals for random rotations
-  const [rotationAfter, setRotationAfter] = createSignal(getRandomRotation(-15, 15));
-  const [rotationBefore, setRotationBefore] = createSignal(getRandomRotation(-15, 15));
-
   return (
     <div class="flex justify-between w-full px-2 py-3 hover:bg-zinc-200 group rounded-md cursor-pointer" onClick={props.onEdit}>
       {/* Drag handle container */}
@@ -28,20 +18,12 @@ const ListItem: Component<ListItemProps> = (props) => {
 
       <div class="flex gap-3 flex-1 select-none items-center">
         {props.isCrossed ? (
-          <span class="text-3xl leading-none font-bold text-green-700 pl-4">✓</span>
+          <span class="text-3xl leading-none font-bold text-green-700 pl-4"><IoCheckmark size={30}/></span>
         ) : (
           <span class="text-3xl leading-none font-bold text-zinc-700">○</span>
         )}
         {/* {props.isCrossed ? <IoEllipse size={20} /> : <IoEllipseOutline size={20} />} */}
-        <span
-          class={`text-lg leading-none ${props.isCrossed && "strike-through"}`}
-          style={{
-            "--random-rotation-after": `${rotationAfter()}deg`,
-            "--random-rotation-before": `${rotationBefore()}deg`,
-          }}
-        >
-          {props.text || "New Item"}
-        </span>
+        <span class={`text-lg leading-none ${props.isCrossed && "line-through"}`}>{props.text || "Some example text"}</span>
       </div>
 
       <button
